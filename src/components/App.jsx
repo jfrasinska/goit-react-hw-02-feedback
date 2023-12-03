@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import OpinionFeedback from './OpinionFeedback';
+import FeedbackOptions from './FeedbackOptions';
+import Statistics from './Statistics';
+import Section from './Section';
 
 const App = () => {
   const [feedbackStats, setFeedbackStats] = useState({
@@ -29,16 +31,23 @@ const App = () => {
   return (
     <div>
       <h1>Feedback App</h1>
-      <OpinionFeedback opinion="good" onFeedback={handleFeedback} />
-      <OpinionFeedback opinion="neutral" onFeedback={handleFeedback} />
-      <OpinionFeedback opinion="bad" onFeedback={handleFeedback} />
 
-      <h2>Feedback Statistics</h2>
-      <p>Good: {feedbackStats.good}</p>
-      <p>Neutral: {feedbackStats.neutral}</p>
-      <p>Bad: {feedbackStats.bad}</p>
-      <p>Total: {countTotalFeedback()}</p>
-      <p>Positive Feedback: {countPositiveFeedbackPercentage()}%</p>
+      <Section title="Give Feedback">
+        <FeedbackOptions
+          options={['good', 'neutral', 'bad']}
+          onLeaveFeedback={handleFeedback}
+        />
+      </Section>
+
+      <Section title="Feedback Statistics">
+        <Statistics
+          good={feedbackStats.good}
+          neutral={feedbackStats.neutral}
+          bad={feedbackStats.bad}
+          total={countTotalFeedback()}
+          positivePercentage={countPositiveFeedbackPercentage()}
+        />
+      </Section>
     </div>
   );
 };
