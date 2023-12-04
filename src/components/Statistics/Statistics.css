@@ -1,0 +1,9 @@
+.statistics {
+  border: solid 0.2px coral;
+  padding-left: 10px;
+}
+
+.statistics-item {
+  display: flex;
+  justify-content: space-between;
+}
